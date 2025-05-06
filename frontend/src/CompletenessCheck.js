@@ -10,7 +10,7 @@ function CompletenessCheck() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3001/all/c')
+        axios.get('http://dqm-iw1g.onrender.com:3001/all/c')
             .then(response => {
                 if (response && response.data) {
                     setLogs(response.data);
@@ -27,7 +27,7 @@ function CompletenessCheck() {
         formData.append('file', uploadedFile);
 
         try {
-            const response = await axios.post('http://localhost:3001/upload', formData);
+            const response = await axios.post('http://dqm-iw1g.onrender.com:3001/upload', formData);
             setColumns(response.data);
         } catch (error) {
             console.error('Error uploading file:', error);
@@ -44,7 +44,7 @@ function CompletenessCheck() {
         const formData = new FormData();
         formData.append('columns', JSON.stringify(selectedColumns));
         try {
-            const response = await axios.post('http://localhost:3001/calculate/c', formData, {
+            const response = await axios.post('http://dqm-iw1g.onrender.com:3001/calculate/c', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -60,8 +60,8 @@ function CompletenessCheck() {
 
     const handleSave = async () => {
         try {
-            await axios.post('http://localhost:3001/save/c');
-            axios.get('http://localhost:3001/all/c').then(response => {
+            await axios.post('http://dqm-iw1g.onrender.com:3001/save/c');
+            axios.get('http://dqm-iw1g.onrender.com:3001/all/c').then(response => {
                     if (response && response.data) {
                         setLogs(response.data);
                     }
@@ -74,9 +74,9 @@ function CompletenessCheck() {
     const handleDelete = async (id) => {
         try {
             console.log(id);
-            await axios.delete(`http://localhost:3001/delete/c/${id}`);
+            await axios.delete(`http://dqm-iw1g.onrender.com:3001/delete/c/${id}`);
             // Refresh the logs after deletion
-            axios.get('http://localhost:3001/all/c').then(response => {
+            axios.get('http://dqm-iw1g.onrender.com:3001/all/c').then(response => {
                     if (response && response.data) {
                         setLogs(response.data);
                     }
@@ -87,8 +87,8 @@ function CompletenessCheck() {
     };
     const handleDeleteAll = async () => {
         try {
-            await axios.delete('http://localhost:3001/delete/c/all');
-            axios.get('http://localhost:3001/all/c').then(response => {
+            await axios.delete('http://dqm-iw1g.onrender.com:3001/delete/c/all');
+            axios.get('http://dqm-iw1g.onrender.com:3001/all/c').then(response => {
                     if (response && response.data) {
                         setLogs(response.data);
                     }
@@ -105,8 +105,8 @@ function CompletenessCheck() {
                 <h1 style={{flexGrow: 1, textAlign: 'center', margin: 0, marginLeft: '250px', fontSize: '24px', fontWeight: '500', color: 'white'}}>
                     Commission and Omission Calculator
                 </h1>
-                <a href={'http://localhost:3000/format'} style={{marginRight: '25px', color: "white", textDecoration: "none"}}>Format Check</a>
-                <a href={'http://localhost:3000/domain'} style={{color: "white", textDecoration: "none"}}>Domain Check</a>
+                <a href={'http://dqm-iw1g.onrender.com:3000/format'} style={{marginRight: '25px', color: "white", textDecoration: "none"}}>Format Check</a>
+                <a href={'http://dqm-iw1g.onrender.com:3000/domain'} style={{color: "white", textDecoration: "none"}}>Domain Check</a>
             </header>
 
             {/* File Upload Section */}
