@@ -14,7 +14,7 @@ function FormatCheck() {
         const formData = new FormData();
         formData.append('file', uploadedFile);
         try {
-            const response = await axios.post('http://localhost:3001/upload/f', formData);
+            const response = await axios.post('http://dqm-iw1g.onrender.com:3001/upload/f', formData);
             setColumns(response.data);
             setSelectedColumns([]);
         } catch (error) {
@@ -30,7 +30,7 @@ function FormatCheck() {
         const formData = new FormData();
         formData.append('columns', JSON.stringify(selectedColumns));
         try {
-            const response = await axios.post(`http://localhost:3001/calculate/${selectedFormat}`, formData, {
+            const response = await axios.post(`http://dqm-iw1g.onrender.com:3001/calculate/${selectedFormat}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -45,8 +45,8 @@ function FormatCheck() {
     };
     const handleSave = async () => {
         try {
-            await axios.post(`http://localhost:3001/save/${selectedFormat}`);
-            axios.get(`http://localhost:3001/all/${selectedFormat}`).then(response => {
+            await axios.post(`http://dqm-iw1g.onrender.com:3001/save/${selectedFormat}`);
+            axios.get(`http://dqm-iw1g.onrender.com:3001/all/${selectedFormat}`).then(response => {
                 if (response && response.data) {
                     setLogs(response.data);
                 }
@@ -59,9 +59,9 @@ function FormatCheck() {
     const handleDelete = async (id) => {
         try {
             console.log(id);
-            await axios.delete(`http://localhost:3001/delete/f/${id}`);
+            await axios.delete(`http://dqm-iw1g.onrender.com:3001/delete/f/${id}`);
             // Refresh the logs after deletion
-            axios.get(`http://localhost:3001/all/${selectedFormat}`).then(response => {
+            axios.get(`http://dqm-iw1g.onrender.com:3001/all/${selectedFormat}`).then(response => {
                 if (response && response.data) {
                     setLogs(response.data);
                 }
@@ -72,8 +72,8 @@ function FormatCheck() {
     };
     const handleDeleteAll = async (str) => {
         try {
-            await axios.delete(`http://localhost:3001/delete/f/all/${str}`);
-            axios.get(`http://localhost:3001/all/${selectedFormat}`).then(response => {
+            await axios.delete(`http://dqm-iw1g.onrender.com:3001/delete/f/all/${str}`);
+            axios.get(`http://dqm-iw1g.onrender.com:3001/all/${selectedFormat}`).then(response => {
                 if (response && response.data) {
                     setLogs(response.data);
                 }
@@ -89,8 +89,8 @@ function FormatCheck() {
             <h1 style={{flexGrow: 1, textAlign: 'center', margin: 0, marginLeft: '250px', fontSize: '24px', fontWeight: '500', color: 'white'}}>
                 Format Check
             </h1>
-            <a href={'http://localhost:3000/domain'} style={{marginRight: '25px', color: "white", textDecoration: "none"}}>Domain Check</a>
-            <a href={'http://localhost:3000/completeness'} style={{color: "white", textDecoration: "none"}}>Completeness Check</a>
+            <a href={'http://dqm-iw1g.onrender.com:3000/domain'} style={{marginRight: '25px', color: "white", textDecoration: "none"}}>Domain Check</a>
+            <a href={'http://dqm-iw1g.onrender.com:3000/completeness'} style={{color: "white", textDecoration: "none"}}>Completeness Check</a>
         </header>
             <div style={{ textAlign: "center", marginTop: "20px" }}>
                 <select
@@ -101,7 +101,7 @@ function FormatCheck() {
                         setFileFormat([]);
                         setErrorRate(0);
                         setSelectedFormat(e.target.value);
-                        axios.get(`http://localhost:3001/all/${e.target.value}`)
+                        axios.get(`http://dqm-iw1g.onrender.com:3001/all/${e.target.value}`)
                             .then(response => {
                                 if (response && response.data) {
                                     setLogs(response.data);
