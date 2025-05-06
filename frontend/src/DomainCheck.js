@@ -21,7 +21,7 @@ function DomainCheck() {
 
 
     useEffect(() => {
-        axios.get('http://dqm-iw1g.onrender.com:3001/all/d')
+        axios.get('http://dqm-iw1g.onrender.com/all/d')
             .then(response => {
                 if (response && response.data) {
                     setDomains(response.data);
@@ -38,7 +38,7 @@ function DomainCheck() {
         formData.append('file', uploadedFile);
 
         try {
-            const response = await axios.post('https://dqm-iw1g.onrender.com:3001/upload/d', formData);
+            const response = await axios.post('https://dqm-iw1g.onrender.com/upload/d', formData);
             setColumns(response.data);
             let len=columns.length;
             setType(new Array(len).fill(""));
@@ -75,7 +75,7 @@ function DomainCheck() {
                 formdata.append('value', value);
                 // console.log(exists[index]);
                 // formdata.append('exists', exists[index]);
-                response = await axios.post('http://dqm-iw1g.onrender.com:3001/calculate/d/list', formdata, {
+                response = await axios.post('http://dqm-iw1g.onrender.com/calculate/d/list', formdata, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     }
@@ -95,7 +95,7 @@ function DomainCheck() {
                 formData.append('index', index);
                 // formData.append('value', value);
                 // console.log(formData);
-                response = await axios.post('http://dqm-iw1g.onrender.com:3001/calculate/d/all', formData, {
+                response = await axios.post('http://dqm-iw1g.onrender.com/calculate/d/all', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     }
@@ -215,8 +215,8 @@ function DomainCheck() {
     const handleDelete = async (id) => {
         console.log(id);
         try {
-            await axios.delete(`http://dqm-iw1g.onrender.com:3001/delete/d/${id}`);
-            axios.get('http://dqm-iw1g.onrender.com:3001/all/d').then(response => {
+            await axios.delete(`http://dqm-iw1g.onrender.com/delete/d/${id}`);
+            axios.get('http://dqm-iw1g.onrender.com/all/d').then(response => {
                 if (response && response.data) {
                     setDomains(response.data);
                 }
@@ -228,8 +228,8 @@ function DomainCheck() {
 
     const handleDeleteAll = async () => {
         try {
-            await axios.delete('http://dqm-iw1g.onrender.com:3001/delete/d/all');
-            axios.get('http://dqm-iw1g.onrender.com:3001/all/d').then(response => {
+            await axios.delete('http://dqm-iw1g.onrender.com/delete/d/all');
+            axios.get('http://dqm-iw1g.onrender.com/all/d').then(response => {
                 if (response && response.data) {
                     setDomains(response.data);
                 }
@@ -241,8 +241,8 @@ function DomainCheck() {
 
     const saveDomain = async () => {
         try {
-            await axios.post('http://dqm-iw1g.onrender.com:3001/save/d');
-            axios.get('http://dqm-iw1g.onrender.com:3001/all/d').then(response => {
+            await axios.post('http://dqm-iw1g.onrender.com/save/d');
+            axios.get('http://dqm-iw1g.onrender.com/all/d').then(response => {
                 if (response && response.data) {
                     setDomains(response.data);
                     console.log(response.data);
@@ -263,7 +263,7 @@ function DomainCheck() {
     //     const formData = new FormData();
     //     formData.append('columns', JSON.stringify(selectedColumns));
     //     try {
-    //         const response = await axios.post('http://dqm-iw1g.onrender.com:3001/calculate/c', formData, {
+    //         const response = await axios.post('http://dqm-iw1g.onrender.com/calculate/c', formData, {
     //             headers: {
     //                 'Content-Type': 'multipart/form-data',
     //             },
@@ -283,8 +283,8 @@ function DomainCheck() {
                 <h1 style={{flexGrow: 1, textAlign: 'center', margin: 0, marginLeft: '250px', fontSize: '24px', fontWeight: '500', color: 'white'}}>
                     Domain Check
                 </h1>
-                <a href={'http://dqm-iw1g.onrender.com:3000/completeness'} style={{marginRight: '25px', color: "white", textDecoration: "none"}}>Completeness Check</a>
-                <a href={'http://dqm-iw1g.onrender.com:3000/format'} style={{color: "white", textDecoration: "none"}}>Format Check</a>
+                <a href={'http://dqm-iw1g.onrender.com/completeness'} style={{marginRight: '25px', color: "white", textDecoration: "none"}}>Completeness Check</a>
+                <a href={'http://dqm-iw1g.onrender.com/format'} style={{color: "white", textDecoration: "none"}}>Format Check</a>
             </header>
             <div style={{backgroundColor: '#e6f0fa', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.05)', marginBottom: '20px', textAlign: 'center',}}>
                 <h2 style={{fontSize: '20px', fontWeight: '500', color: '#333', marginBottom: '15px',}}>
@@ -327,7 +327,7 @@ function DomainCheck() {
                                             formData.append('col', col);
                                             formData.append('type', e.target.value);
                                             try {
-                                                const response = await axios.post('http://dqm-iw1g.onrender.com:3001/findrange', formData, {
+                                                const response = await axios.post('http://dqm-iw1g.onrender.com/findrange', formData, {
                                                     headers: {
                                                         'Content-Type': 'multipart/form-data',
                                                     }
