@@ -1,9 +1,10 @@
 FROM maven:3.8.6-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY . .
+RUN ls -la
 RUN mvn clean package -DskipTests
 FROM openjdk:17.0.1-jdk-slim
 WORKDIR /app
-COPY --from=build /backend/target/*.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 3001
 ENTRYPOINT ["java", "-jar", "app.jar"]
