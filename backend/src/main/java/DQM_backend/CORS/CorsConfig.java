@@ -12,7 +12,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://Kp2340.github.io")
+                        .allowedOrigins("https://dqm-iw1g.onrender.com")
                         .allowedMethods("GET", "POST", "PUT", "DELETE");
             }
         };
