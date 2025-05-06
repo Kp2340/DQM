@@ -1,0 +1,17 @@
+/* src/App.css */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+input[type="file"] {
+  padding: 5px;
+}
+
+main {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
