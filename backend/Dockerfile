@@ -1,6 +1,6 @@
 FROM maven:3.8.6-eclipse-temurin-17 AS build
 WORKDIR /app
-COPY . .
+COPY backend/ .
 RUN ls -la
 RUN mvn clean package -DskipTests
 FROM openjdk:17.0.1-jdk-slim
